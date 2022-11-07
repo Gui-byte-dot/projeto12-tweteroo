@@ -46,8 +46,13 @@ app.post('/tweets',(req,res) => {
 
 app.get('/tweets',(req,res) => { 
     console.log(tweets.length);
-    
-    res.send(tweets.filter((value,index) => index < 10));
+    if(tweets.length < 10){
+        res.send(tweets);
+    } else {
+        let tweetFiltrado = tweets.slice(tweets.length - 10, tweets.length);
+        res.send(tweetFiltrado);
+    }
+    // res.send(tweets.filter((value,index) => index < 10));
     
 })
 
